@@ -5,7 +5,7 @@ from config import bot
 
 async def command_start(message: types.Message):
     await bot.send_message(message.from_user.id,
-                           f"Hello my master {message.from_user.id}")
+                           f"Hello my master {message.from_user.full_name}")
 
 
 async def quiz_1(message: types.Message):
@@ -16,9 +16,9 @@ async def quiz_1(message: types.Message):
     )
     markup.add(button_call_1)
 
-    question = 'Чему равно число пи?'
+    question = 'Какой палец самый длинный?'
     answers = [
-        '3.15', '4.35', '3.14', '3.13'
+        'Большой', 'Указательный', 'Средний', 'Безымянный', 'Мизинец'
     ]
     await bot.send_poll(
         chat_id=message.chat.id,
@@ -26,7 +26,7 @@ async def quiz_1(message: types.Message):
         options=answers,
         is_anonymous=False,
         type='quiz',
-        correct_option_id=2,
+        correct_option_id=3,
         explanation="Сам думай",
         explanation_parse_mode=ParseMode.MARKDOWN_V2,
         reply_markup=markup
@@ -46,7 +46,7 @@ async def callback (message: types.Message):
         callback_data='button_call_6',
     )
     markup.add(button_call_5,button_call_6)
-    await bot.send_message(message.from_user.id,"Сколько тебе лет?",
+    await bot.send_message(message.chat.id,"Сколько тебе лет?",
                            reply_markup=markup)
 
 

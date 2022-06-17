@@ -4,7 +4,6 @@ from aiogram.types import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 from config import bot
 
 
-
 async def quiz_2(call: types.CallbackQuery):
     markup = InlineKeyboardMarkup()
     button_call_2 = InlineKeyboardButton(
@@ -13,14 +12,12 @@ async def quiz_2(call: types.CallbackQuery):
     )
     markup.add(button_call_2)
 
-    question = 'By whom invented Python?'
+    question = 'Какой цвет глаз самый распространённый?'
     answers = [
-        "Harry Potter",
-        "Putin",
-        "Voldemort",
-        "Griffin",
-        "Linus Torvalds",
-        "Guido Van Rossum",
+        "Карий",
+        "Зелёный",
+        "Голубой",
+        "Фиолетовый",
     ]
     await bot.send_poll(
         chat_id=call.message.chat.id,
@@ -28,12 +25,11 @@ async def quiz_2(call: types.CallbackQuery):
         options=answers,
         is_anonymous=False,
         type='quiz',
-        correct_option_id=5,
+        correct_option_id=0,
         explanation="Сам думай",
         explanation_parse_mode=ParseMode.MARKDOWN_V2,
         reply_markup=markup
     )
-
 
 
 async def quiz_3(call: types.CallbackQuery):
