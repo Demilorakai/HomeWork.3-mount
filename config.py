@@ -8,4 +8,4 @@ storage = MemoryStorage()
 TOKEN = config("TOKEN")
 bot = Bot(TOKEN)
 dp = Dispatcher(bot=bot, storage=storage)
-ADMIN = [1884246396, ]
+ADMIN = [1884246396]
