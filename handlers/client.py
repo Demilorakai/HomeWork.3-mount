@@ -32,7 +32,7 @@ async def quiz_1(message: types.Message):
         reply_markup=markup
     )
 async def mem (message: types.Message):
-    photo = open('Photos/mem-2-1024x683.jpg','rb')
+    photo = open('Photos/mem-2-1024x683.jpg', 'rb')
     await bot.send_photo(message.chat.id, photo=photo)
 
 async def callback (message: types.Message):
