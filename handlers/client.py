@@ -1,7 +1,10 @@
+import aiogram
 from aiogram import types, Dispatcher
 from aiogram.types import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import bot
+from PAN import movies, Agony, Anime
+
 
 async def command_start(message: types.Message):
     await bot.send_message(message.from_user.id,
@@ -31,9 +34,12 @@ async def quiz_1(message: types.Message):
         explanation_parse_mode=ParseMode.MARKDOWN_V2,
         reply_markup=markup
     )
+
+
 async def mem (message: types.Message):
     photo = open('Photos/mem-2-1024x683.jpg', 'rb')
     await bot.send_photo(message.chat.id, photo=photo)
+
 
 async def callback (message: types.Message):
     markup = InlineKeyboardMarkup()
@@ -49,9 +55,27 @@ async def callback (message: types.Message):
     await bot.send_message(message.chat.id,"Сколько тебе лет?",
                            reply_markup=markup)
 
+async def serial(message: aiogram.types.Message):
+    data = movies.parser_rez()
+    for show in data:
+        await bot.send_message(message.chat.id, show)
+
+async def mult(message: aiogram.types.Message):
+    data = Agony.parser_mult()
+    for show in data:
+        await bot.send_message(message.chat.id, show)
+
+async def anime(message: aiogram.types.Message):
+    data = Anime.parser_anime()
+    for show in data:
+        await bot.send_message(message.chat.id, show)
+
 
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(command_start, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(mem, commands=['mem'])
     dp.register_message_handler(callback, commands=['Q'])
+    dp.register_message_handler(serial, commands=['serial'])
+    dp.register_message_handler(mult, commands=['mult'])
+    dp.register_message_handler(anime, commands=['anime'])

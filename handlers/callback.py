@@ -33,15 +33,15 @@ async def quiz_2(call: types.CallbackQuery):
 
 
 async def quiz_3(call: types.CallbackQuery):
-    question = 'ОТВЕЧАЙ!!!!'
+    question = 'Число Пи!!!!'
     answers = [
         '4',
-        '8',
-        '4, 6',
-        '2, 4',
-        '5',
+        '8, 1',
+        '4, 67',
+        '3, 14',
+        '5, 51'
     ]
-    photo = open('media/problem1.jpg', 'rb')
+    photo = open('media/b65327c0718351690a80fb07f974789a.jpg', 'rb')
     await bot.send_photo(call.message.chat.id, photo=photo)
 
     await bot.send_poll(
@@ -57,6 +57,7 @@ async def quiz_3(call: types.CallbackQuery):
 
 async def callback_1 (call: types.CallbackQuery):
     await bot.send_message(call.message.chat.id,"Миллениал")
+
 
 async def callback_2 (call: types.CallbackQuery):
     markup = InlineKeyboardMarkup()
