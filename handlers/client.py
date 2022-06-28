@@ -3,7 +3,7 @@ from aiogram import types, Dispatcher
 from aiogram.types import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import bot
-from PAN import movies, Agony, Anime
+from PARSERING import movies, Agony, Anime
 
 
 async def command_start(message: types.Message):

@@ -44,5 +44,5 @@ def parser_rez():
             films.extend(get_data(html.text))
         return films
     else:
-        raise Exception('Error in PAN!!!')
+        raise Exception('Error in PARSERING!!!')
 
