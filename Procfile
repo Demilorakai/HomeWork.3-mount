@@ -1,0 +1,1 @@
+worker: python HomeWork1.py
