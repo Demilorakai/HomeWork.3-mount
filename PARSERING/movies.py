@@ -17,9 +17,6 @@ def get_html(url, params=''):
     return req
 
 
-
-
-
 def get_data(html):
     soup = BeautifulSoup(html, "html.parser")
     items = soup.find_all('div', class_="b-content__inline_item")
@@ -34,7 +31,7 @@ def get_data(html):
     return films
 
 
-def parser_rez():
+def parser_serials():
     html = get_html(URL2)
     if html.status_code == 200:
         films = []

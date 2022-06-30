@@ -30,7 +30,7 @@ def get_data(html):
     return films
 
 
-def parser_anime():
+def parser_animeshki():
     html = get_html(URL)
     if html.status_code == 200:
         films = []

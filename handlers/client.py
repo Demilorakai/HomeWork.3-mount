@@ -3,12 +3,14 @@ from aiogram import types, Dispatcher
 from aiogram.types import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import bot
-from PARSERING import movies, Agony, Anime
+from keyboards.client_kb import start_markup
+from PARSERING import movies, multici, Anime
 
 
 async def command_start(message: types.Message):
     await bot.send_message(message.from_user.id,
-                           f"Hello my master {message.from_user.full_name}")
+                           f"Hello my master {message.from_user.full_name}",
+                           reply_markup=start_markup)
 
 
 async def quiz_1(message: types.Message):
@@ -55,20 +57,47 @@ async def callback (message: types.Message):
     await bot.send_message(message.chat.id,"Сколько тебе лет?",
                            reply_markup=markup)
 
+
 async def serial(message: aiogram.types.Message):
-    data = movies.parser_rez()
-    for show in data:
-        await bot.send_message(message.chat.id, show)
+    data = movies.parser_serials()
+    for movie in data:
+        desc = movie['desc'].split(', ')
+        await bot.send_message(
+            message.from_user.id,
+            f"{movie['title']}\n"
+            f"Год: {desc[0]}\n"
+            f"Город: {desc[1]}\n"
+            f"Жанр: #{desc[2]}\n\n"
+            f"{movie['link']}"
+        )
+
 
 async def mult(message: aiogram.types.Message):
-    data = Agony.parser_mult()
-    for show in data:
-        await bot.send_message(message.chat.id, show)
+    data = multici.parser_mult()
+    for movie in data:
+        desc = movie['desc'].split(', ')
+        await bot.send_message(
+            message.from_user.id,
+            f"{movie['title']}\n"
+            f"Год: {desc[0]}\n"
+            f"Город: {desc[1]}\n"
+            f"Жанр: #{desc[2]}\n\n"
+            f"{movie['link']}"
+        )
+
 
 async def anime(message: aiogram.types.Message):
-    data = Anime.parser_anime()
-    for show in data:
-        await bot.send_message(message.chat.id, show)
+    data = Anime.parser_animeshki()
+    for movie in data:
+        desc = movie['desc'].split(', ')
+        await bot.send_message(
+            message.from_user.id,
+            f"{movie['title']}\n"
+            f"Год: {desc[0]}\n"
+            f"Город: {desc[1]}\n"
+            f"Жанр: #{desc[2]}\n\n"
+            f"{movie['link']}"
+        )
 
 
 def register_handlers_client(dp: Dispatcher):
